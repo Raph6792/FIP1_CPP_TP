@@ -1,6 +1,6 @@
 # FIP1_CPP_TP
 
-// TP2 - Rectangle, Cercle et Triangle //
+// TP2 - Rectangle, Cercle et Triangle //  
 
 Pour chaque classe, vous implémenterez une méthode Afficher() qui donnera les infos données par les différentes méthodes et fonctions.
 
