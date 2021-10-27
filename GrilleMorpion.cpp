@@ -9,7 +9,7 @@ int GrilleMorpion::GetCoup()
 	return coup;
 }
 
-const bool GrilleMorpion::CaseVide() // Fonction avec déclaration de la valeur de chaque ligne par défaut 
+const bool GrilleMorpion::CaseVide() // Fonction avec dÃ©claration de la valeur de chaque ligne par dÃ©faut 
 {
 	grille[0][0] = ' ';
 	grille[0][1] = ' ';
@@ -23,7 +23,7 @@ const bool GrilleMorpion::CaseVide() // Fonction avec déclaration de la valeur d
 	return true;
 }
 
-void GrilleMorpion::DepotJeton(int joueur, int x, int y) // Fonction de dépot de jeton 
+void GrilleMorpion::DepotJeton(int joueur, int x, int y) // Fonction de dÃ©pot de jeton 
 {
 	if (joueur == 1)
 		grille[x - 1] [y - 1] = symbole1; // Symbole du joueur 1
@@ -65,7 +65,7 @@ const bool GrilleMorpion::DiagonaleComplete()
 const bool GrilleMorpion::VictoireJoueur()
 {
 	if (LigneComplete() || ColonneComplete() || (DiagonaleComplete())) // Victoire d'un joueur 
-		return true;
+		return true; 
 	
 	return false;
 }
