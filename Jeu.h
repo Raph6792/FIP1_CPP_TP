@@ -17,7 +17,6 @@ public:
 private:
 	string c_nom;
 	int c_nombre;
-	int choix;
 	int joue = 1;
 	string nom;
 };

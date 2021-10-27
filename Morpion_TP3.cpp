@@ -9,13 +9,9 @@ using namespace std;
 int main()
 {
     int i = 0;
-    int choix;
     GrilleMorpion morpion;
     Jeu Morpion;
     morpion.CaseVide();
     Morpion.SaisieJoueur();
-    morpion.DepotJeton(i, choix); // Fonction posant problème... impossible de faire disparaître l'erreur lors de la compilation
-    morpion.AffichageGrille();
-
     return 0;
 }

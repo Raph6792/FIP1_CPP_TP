@@ -37,6 +37,8 @@ int Jeu::getNombre() const
 
 void Jeu::SaisieJoueur() // boucle pour savoir quand le joueur gagne ou continue jusqu'à ce que l'une des conditions soient remplis 
 {
+    int x = 0; // Lignes
+    int y = 0; // Colonnes
     cout << "Veuillez entrer un nom pour le joueur 1" << endl;
     cin >> nom;
     Jeu j1(1, nom);
@@ -44,18 +46,27 @@ void Jeu::SaisieJoueur() // boucle pour savoir quand le joueur gagne ou continue
     cout << "Veuillez entrer un nom pour le joueur 2" << endl;
     cin >> nom;
     Jeu j2(2, nom);
-    while (morpion.VictoireJoueur() != 1 && morpion.VictoireJoueur() != -1)
+    while (morpion.VictoireJoueur() == false || morpion.GetCoup() < 9 )
     {
         cout << "A votre tour, joueur " << joue << ":" << endl;
-        cin >> choix;
-        morpion.DepotJeton(joue, choix);
+        cout << "Valeur de x :" << endl;
+        cin >> x;
+        cout << "Valeur de y :" << endl;
+        cin >> y;
+        morpion.DepotJeton(joue, x, y);
         morpion.AffichageGrille();
-        if (morpion.VictoireJoueur() == 1 && joue == 1)
+        if (morpion.VictoireJoueur() == true && joue == 1)
             cout << endl << j1.getNom() << " a gagne" << endl;
         else if (morpion.VictoireJoueur() == 1 && joue == 2)
             cout << endl << j2.getNom() << " a gagne" << endl;
+        else if (morpion.GetCoup() == 9)
+        {
+            cout << "Match nul" << endl; // Match nul si égalité
+        }
+        else if (joue == 1)
+            joue = 2;
         else
-            joue = 3 - joue;
+            joue = 1;
     }
     
 }
