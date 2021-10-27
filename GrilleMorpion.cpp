@@ -4,32 +4,39 @@
 
 using namespace std;
 
+int GrilleMorpion::GetCoup()
+{
+	return coup;
+}
+
 const bool GrilleMorpion::CaseVide() // Fonction avec déclaration de la valeur de chaque ligne par défaut 
 {
-	grille[0][0] = 0;
-	grille[0][1] = 0;
-	grille[0][2] = 0;
-	grille[1][0] = 0;
-	grille[1][1] = 0;
-	grille[1][2] = 0;
-	grille[2][0] = 0;
-	grille[2][1] = 0;
-	grille[2][2] = 0;
+	grille[0][0] = ' ';
+	grille[0][1] = ' ';
+	grille[0][2] = ' ';
+	grille[1][0] = ' ';
+	grille[1][1] = ' ';
+	grille[1][2] = ' ';
+	grille[2][0] = ' ';
+	grille[2][1] = ' ';
+	grille[2][2] = ' ';
 	return true;
 }
 
-void GrilleMorpion::DepotJeton(int j, int choix) // Fonction de dépot de jeton (en erreur...) 
+void GrilleMorpion::DepotJeton(int joueur, int x, int y) // Fonction de dépot de jeton 
 {
-	if (j == 1)
-		grille[choix - 1] [choix - 1] = symbole1; // Symbole du joueur 1
+	if (joueur == 1)
+		grille[x - 1] [y - 1] = symbole1; // Symbole du joueur 1
 	else
-		grille[choix - 1] [choix - 1] = symbole2; // Symbole du joueur 2
+		grille[x - 1] [y - 1] = symbole2; // Symbole du joueur 2
 	coup++;
 }
 
 const bool GrilleMorpion::LigneComplete()
 {
-	if ((grille[0][0] == grille[0][1] && grille[0][1] == grille[0][2]) || (grille[1][0] == grille[1][1] && grille[1][1] == grille[1][2]) || (grille[2][0] == grille[2][1] && grille[2][1] == grille[2][2]))
+	if ((grille[0][0] == grille[0][1] && grille[0][1] == grille[0][2]) && grille[0][0] != ' ' ||
+		(grille[1][0] == grille[1][1] && grille[1][1] == grille[1][2]) && grille[1][0] != ' ' ||
+		(grille[2][0] == grille[2][1] && grille[2][1] == grille[2][2]) && grille[2][0] != ' ')
 		return true;
 	else
 		return false;
@@ -38,7 +45,9 @@ const bool GrilleMorpion::LigneComplete()
 
 const bool GrilleMorpion::ColonneComplete()
 {
-	if ((grille[0][0] == grille[1][0] && grille[1][0] == grille[2][0]) || (grille[0][1] == grille[1][1] && grille[1][1] == grille[2][1]) || (grille[0][2] == grille[1][2] && grille[1][2] == grille[2][2]))
+	if ((grille[0][0] == grille[1][0] && grille[1][0] == grille[2][0]) && grille[0][0] != ' ' ||
+		(grille[0][1] == grille[1][1] && grille[1][1] == grille[2][1]) && grille[0][1] != ' ' ||
+		(grille[0][2] == grille[1][2] && grille[1][2] == grille[2][2]) && grille[0][2] != ' ')
 		return true;
 	else
 		return false;
@@ -46,7 +55,8 @@ const bool GrilleMorpion::ColonneComplete()
 
 const bool GrilleMorpion::DiagonaleComplete()
 {
-	if ((grille[0][0] == grille[1][1] && grille[1][1] == grille[2][2]) || (grille[0][2] == grille[1][1] && grille[1][1] == grille[2][0]))
+	if ((grille[0][0] == grille[1][1] && grille[1][1] == grille[2][2]) && grille[0][0] != ' ' ||
+		(grille[0][2] == grille[1][1] && grille[1][1] == grille[2][0]) && grille[0][2] != ' ')
 		return true;
 	else
 		return false;
@@ -56,12 +66,8 @@ const bool GrilleMorpion::VictoireJoueur()
 {
 	if (LigneComplete() || ColonneComplete() || (DiagonaleComplete())) // Victoire d'un joueur 
 		return true;
-	else if (coup == 9)
-	{
-	cout << "Match nul" << endl; // Match nul si égalité
+	
 	return false;
-	}
-	return 0;
 }
 
 const void GrilleMorpion::AffichageGrille() // Affichage du Morpion 
